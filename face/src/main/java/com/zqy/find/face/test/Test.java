@@ -1,14 +1,11 @@
 package com.zqy.find.face.test;
 
-import java.util.Date;
-
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.zqy.exceptionHandle.exception.JsonRuntimeException;
 
-@RestController
+@Controller
 @EnableAutoConfiguration
 public class Test {
 	@RequestMapping("/")
@@ -18,7 +15,7 @@ public class Test {
 
     @RequestMapping("/now")
     String hehe() {
-        return "现在时间：" + (new Date()).toLocaleString();
+        return "index";
     }
 
 }

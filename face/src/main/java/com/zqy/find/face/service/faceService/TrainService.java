@@ -8,17 +8,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.zqy.find.face.faceTool.lib64.FaceTool;
 import com.zqy.find.face.model.Face;
+import com.zqy.find.face.repository.FaceRepository;
 
 
 
 @Service
 @Transactional
 public class TrainService {
-	/*@Autowired
-    private SzzDao szzDao;
 	@Autowired
-	private FaceDao<Face> faceDao;
-	@Override*/
+	private FaceRepository faceRepository;
+	
 	public void trainAndSave(int szzid[], String[] imgPaths) throws Exception {
 		FaceTool v = FaceTool.INSTANCE;
 		v.init("E:/face/model/seeta_fd_frontal_v1.0.bin",
@@ -35,9 +34,9 @@ public class TrainService {
 			if(featStrs[i]!=null && !featStrs[i].equals("")){
 				Face face = new Face();
 				String[] feats = featStrs[i].split(":");
-				face.setSzzid(Integer.valueOf(feats[0]));
+				face.setSzzid(Long.valueOf(feats[0]));
 				face.setFaceFeat(feats[1]);
-				//faceDao.save(face);
+				faceRepository.save(face);
 			}
 		}
 	}

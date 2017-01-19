@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
@@ -12,22 +13,23 @@ import org.springframework.transaction.annotation.Transactional;
 import com.zqy.find.face.faceTool.lib64.FaceTool;
 import com.zqy.find.face.model.Face;
 import com.zqy.find.face.model.SearchFace;
+import com.zqy.find.face.repository.FaceRepository;
 
 
 
 @Service
 public class SearchService {
 
-	/*@Autowired
-	private FaceDao<Face> faceDao;*/
+	@Autowired
+	private FaceRepository faceRepository;
 	
 	public List<SearchFace> searchFace(int faceCount, String faceImgFile) {
 		FaceTool faceTool = FaceTool.INSTANCE;
 		faceTool.init("E:/face/model/seeta_fd_frontal_v1.0.bin",
 				   "E:/face/model/seeta_fa_v1.1.bin",
 				   "E:/face/model/seeta_fr_v1.0.bin");
-		 Query query = new Query();
-		List<Face> faceList= null;//faceDao.findAll();
+		List<Face> faceList= faceRepository.findAll();//mongoTemplate.findAll(Face.class);
+		
 		if(faceList==null || faceList.size()<=0){
 			return null;
 		}

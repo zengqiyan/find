@@ -16,19 +16,19 @@ public class Face implements Serializable{
 
 	@GeneratedValue
 	@Id
-	private long id;//id
-	private long szzid;
+	private Long id ;//id
+	private Long szzid;
 	private String faceFeat;
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
-	public long getSzzid() {
+	public Long getSzzid() {
 		return szzid;
 	}
-	public void setSzzid(long szzid) {
+	public void setSzzid(Long szzid) {
 		this.szzid = szzid;
 	}
 	public String getFaceFeat() {

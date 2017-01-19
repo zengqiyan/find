@@ -124,12 +124,13 @@ public class DynamicDataSourceRegister
         // 读取主数据源
         RelaxedPropertyResolver propertyResolver = new RelaxedPropertyResolver(env, "spring.datasource.");
         Map<String, Object> dsMap = new HashMap<String, Object>();
+        
         dsMap.put("type", propertyResolver.getProperty("type"));
         dsMap.put("driver-class-name", propertyResolver.getProperty("driver-class-name"));
         dsMap.put("url", propertyResolver.getProperty("url"));
         dsMap.put("username", propertyResolver.getProperty("username"));
         dsMap.put("password", propertyResolver.getProperty("password"));
-
+        if(dsMap==null || dsMap.size()<=0)return;
         defaultDataSource = buildDataSource(dsMap);
 
         dataBinder(defaultDataSource, env);
