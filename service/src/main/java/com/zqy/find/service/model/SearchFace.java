@@ -1,6 +1,8 @@
-package com.zqy.find.face.model;
+package com.zqy.find.service.model;
 
-public class SearchFace {
+import java.io.Serializable;
+
+public class SearchFace  implements Serializable{
     private long faceID;
     private  float similarityGoal;
    
